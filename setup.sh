@@ -46,7 +46,7 @@ while true; do
         read -r size
         echo 'export _JAVA_OPTIONS=-Xmx${size}G ' >> .bashrc; 
         break;;
-        [Nn]* ) exit;;
+        [Nn]* ) echo "ok"; break;;
         * ) echo "Please answer yes or no.";;
     esac
 done
@@ -62,7 +62,7 @@ while true; do
         sudo swapon /swapfile
         sudo bash -c "echo /swapfile none swap defaults 0 0 >> /etc/fstab"
         break;;
-        [Nn]* ) exit;;
+        [Nn]* ) echo "ok"; break;;
         * ) echo "Please answer yes or no.";;
     esac
 done

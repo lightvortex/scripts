@@ -30,7 +30,7 @@ while true; do
     read -p "Do you wish to clean build?" yn
     case $yn in
         [Yy]* ) make clean; break;;
-        [Nn]* ) exit;;
+        [Nn]* ) echo "ok"; break;;
         * ) echo "Please answer yes or no.";;
     esac
 done
@@ -42,36 +42,77 @@ read -r device
 if [[ $device -eq 1 ]]
 then 
     echo //building chiron//
-    echo //building chiron nongapps//
-    export WITH_GAPPS=false && make clean
-    brunch chiron
-    echo //build complete copying Non-gapps version//
-    mv /home/lightvortex/havoc/out/target/product/chiron/Havoc*.zip /home/lightvortex/havoc/Havoc*.zip
-    echo //cleaning build//
-    make clean
-    echo //building gapps version//
-    export WITH_GAPPS=true && export TARGET_GAPPS_ARCH=arm64
-    brunch chiron
-    echo //build complete//
-    echo //copying//
-    mv /home/lightvortex/havoc/out/target/product/chiron/Havoc*.zip /home/lightvortex/havoc/Havoc*.zip
-    
+    echo -e "Please enter a Version"
+    echo "1)non-gapps"
+    echo "2)gapps"
+    echo "3)both"
+    read -r gapps
+        if [[ $gapps -eq 1 ]]
+            echo //building chiron nongapps//
+            export WITH_GAPPS=false
+            brunch chiron
+            echo //build complete copying Non-gapps version//
+            mv /home/lightvortex/havoc/out/target/product/chiron/Havoc*.zip /home/lightvortex/havoc/Havoc*.zip
+        elif [[ $gapps -eq 2 ]]
+        then
+            echo //building gapps version//
+            export WITH_GAPPS=true && export TARGET_GAPPS_ARCH=arm64
+            brunch chiron
+            echo //build complete//
+            echo //copying//
+            mv /home/lightvortex/havoc/out/target/product/chiron/Havoc*.zip /home/lightvortex/havoc/Havoc*.zip
+          else  
+            echo //building chiron nongapps//
+            export WITH_GAPPS=false
+            brunch chiron
+            echo //build complete copying Non-gapps version//
+            mv /home/lightvortex/havoc/out/target/product/chiron/Havoc*.zip /home/lightvortex/havoc/Havoc*.zip
+            echo //cleaning build//
+            make clean
+            echo //building gapps version//
+            export WITH_GAPPS=true && export TARGET_GAPPS_ARCH=arm64
+            brunch chiron
+            echo //build complete//
+            echo //copying//
+            mv /home/lightvortex/havoc/out/target/product/chiron/Havoc*.zip /home/lightvortex/havoc/Havoc*.zip
+        fi
 elif [[ $device -eq 2 ]]
 then
     echo //building nx531j//
-    echo //building nx531j nongapps//
-    export WITH_GAPPS=false && make clean
-    brunch nx531j
-    echo //build complete copying Non-gapps version//
-    mv /home/lightvortex/havoc/out/target/product/nx531j/Havoc*.zip /home/lightvortex/havoc/Havoc*.zip
-    echo //cleaning build//
-    make clean
-    echo //building gapps version//
-    export WITH_GAPPS=true && export TARGET_GAPPS_ARCH=arm64
-    brunch nx531j
-    echo //build complete//
-    echo //copying//
-    mv /home/lightvortex/havoc/out/target/product/nx531j/Havoc*.zip /home/lightvortex/havoc/Havoc*.zip
+    echo -e "Please enter a Version"
+    echo "1)non-gapps"
+    echo "2)gapps"
+    echo "3)both"
+    read -r gapps
+        if [[ $gapps -eq 1 ]]
+            echo //building nx531j nongapps//
+            export WITH_GAPPS=false
+            brunch nx531j
+            echo //build complete copying Non-gapps version//
+            mv /home/lightvortex/havoc/out/target/product/nx531j/Havoc*.zip /home/lightvortex/havoc/Havoc*.zip
+        elif [[ $gapps -eq 2 ]]
+        then
+            echo //building gapps version//
+            export WITH_GAPPS=true && export TARGET_GAPPS_ARCH=arm64
+            brunch nx531j
+            echo //build complete//
+            echo //copying//
+            mv /home/lightvortex/havoc/out/target/product/nx531j/Havoc*.zip /home/lightvortex/havoc/Havoc*.zip
+          else  
+            echo //building nx531j nongapps//
+            export WITH_GAPPS=false
+            brunch nx531j
+            echo //build complete copying Non-gapps version//
+            mv /home/lightvortex/havoc/out/target/product/nx531j/Havoc*.zip /home/lightvortex/havoc/Havoc*.zip
+            echo //cleaning build//
+            make clean
+            echo //building gapps version//
+            export WITH_GAPPS=true && export TARGET_GAPPS_ARCH=arm64
+            brunch nx531j
+            echo //build complete//
+            echo //copying//
+            mv /home/lightvortex/havoc/out/target/product/nx531j/Havoc*.zip /home/lightvortex/havoc/Havoc*.zip
+        fi
 else
     echo //building both//
     echo //building chiron nongapps//
