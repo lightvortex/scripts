@@ -18,7 +18,7 @@
 
 start=`date +%s`
 echo //syncing//
-repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
+#repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
 echo //enable ccache//
 export USE_CCACHE=1
 ccache -M 50G
@@ -48,8 +48,10 @@ then
     echo "3)both"
     read -r gapps
         if [[ $gapps -eq 1 ]]
+        then
             echo //building chiron nongapps//
             export WITH_GAPPS=false
+            brunch chiron
             brunch chiron
             echo //build complete copying Non-gapps version//
             mv /home/lightvortex/havoc/out/target/product/chiron/Havoc*.zip /home/lightvortex/havoc/Havoc*.zip
@@ -61,7 +63,7 @@ then
             echo //build complete//
             echo //copying//
             mv /home/lightvortex/havoc/out/target/product/chiron/Havoc*.zip /home/lightvortex/havoc/Havoc*.zip
-          else  
+        else  
             echo //building chiron nongapps//
             export WITH_GAPPS=false
             brunch chiron
@@ -85,6 +87,7 @@ then
     echo "3)both"
     read -r gapps
         if [[ $gapps -eq 1 ]]
+        then
             echo //building nx531j nongapps//
             export WITH_GAPPS=false
             brunch nx531j
