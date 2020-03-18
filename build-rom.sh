@@ -18,7 +18,7 @@
 
 start=`date +%s`
 echo //syncing//
-#repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
+repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
 echo //enable ccache//
 export USE_CCACHE=1
 ccache -M 50G
@@ -30,7 +30,7 @@ while true; do
     read -p "Do you wish to clean build?" yn
     case $yn in
         [Yy]* ) make clean; break;;
-        [Nn]* ) echo "ok"; break;;
+        [Nn]* ) echo "Making Dirty Build"; break;;
         * ) echo "Please answer yes or no.";;
     esac
 done
@@ -51,7 +51,6 @@ then
         then
             echo //building chiron nongapps//
             export WITH_GAPPS=false
-            brunch chiron
             brunch chiron
             echo //build complete copying Non-gapps version//
             mv /home/lightvortex/havoc/out/target/product/chiron/Havoc*.zip /home/lightvortex/havoc/Havoc*.zip
@@ -150,4 +149,5 @@ fi
 end=`date +%s`
 runtime=$((end-start))
 echo "Time Taken $runtime"
+break;
 
