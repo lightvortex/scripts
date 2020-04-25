@@ -53,7 +53,7 @@ then
             export WITH_GAPPS=false
             brunch chiron
             echo //build complete copying Non-gapps version//
-            mv /home/lightvortex/havoc/out/target/product/chiron/Havoc*.zip /home/lightvortex/havoc/Havoc*.zip
+            mv /home/lightvortex/havoc/out/target/product/chiron/Havoc*.zip /run/media/lightvortex/Barracuda/
         elif [[ $gapps -eq 2 ]]
         then
             echo //building gapps version//
@@ -61,13 +61,13 @@ then
             brunch chiron
             echo //build complete//
             echo //copying//
-            mv /home/lightvortex/havoc/out/target/product/chiron/Havoc*.zip /home/lightvortex/havoc/Havoc*.zip
+            mv /home/lightvortex/havoc/out/target/product/chiron/Havoc*.zip /run/media/lightvortex/Barracuda/
         else  
             echo //building chiron nongapps//
             export WITH_GAPPS=false
             brunch chiron
             echo //build complete copying Non-gapps version//
-            mv /home/lightvortex/havoc/out/target/product/chiron/Havoc*.zip /home/lightvortex/havoc/Havoc*.zip
+            mv /home/lightvortex/havoc/out/target/product/chiron/Havoc*.zip /run/media/lightvortex/Barracuda/
             echo //cleaning build//
             make clean
             echo //building gapps version//
@@ -75,7 +75,7 @@ then
             brunch chiron
             echo //build complete//
             echo //copying//
-            mv /home/lightvortex/havoc/out/target/product/chiron/Havoc*.zip /home/lightvortex/havoc/Havoc*.zip
+            mv /home/lightvortex/havoc/out/target/product/chiron/Havoc*.zip /run/media/lightvortex/Barracuda/
         fi
 elif [[ $device -eq 2 ]]
 then
@@ -91,7 +91,7 @@ then
             export WITH_GAPPS=false
             brunch nx531j
             echo //build complete copying Non-gapps version//
-            mv /home/lightvortex/havoc/out/target/product/nx531j/Havoc*.zip /home/lightvortex/havoc/Havoc*.zip
+            mv /home/lightvortex/havoc/out/target/product/nx531j/Havoc*.zip /run/media/lightvortex/Barracuda/
         elif [[ $gapps -eq 2 ]]
         then
             echo //building gapps version//
@@ -99,13 +99,13 @@ then
             brunch nx531j
             echo //build complete//
             echo //copying//
-            mv /home/lightvortex/havoc/out/target/product/nx531j/Havoc*.zip /home/lightvortex/havoc/Havoc*.zip
+            mv /home/lightvortex/havoc/out/target/product/nx531j/Havoc*.zip /run/media/lightvortex/Barracuda/
           else  
             echo //building nx531j nongapps//
             export WITH_GAPPS=false
             brunch nx531j
             echo //build complete copying Non-gapps version//
-            mv /home/lightvortex/havoc/out/target/product/nx531j/Havoc*.zip /home/lightvortex/havoc/Havoc*.zip
+            mv /home/lightvortex/havoc/out/target/product/nx531j/Havoc*.zip /run/media/lightvortex/Barracuda/
             echo //cleaning build//
             make clean
             echo //building gapps version//
@@ -113,7 +113,7 @@ then
             brunch nx531j
             echo //build complete//
             echo //copying//
-            mv /home/lightvortex/havoc/out/target/product/nx531j/Havoc*.zip /home/lightvortex/havoc/Havoc*.zip
+            mv /home/lightvortex/havoc/out/target/product/nx531j/Havoc*.zip /run/media/lightvortex/Barracuda/
         fi
 else
     echo //building both//
@@ -121,7 +121,7 @@ else
     export WITH_GAPPS=false && make clean
     brunch chiron
     echo //build complete copying Non-gapps version//
-    mv /home/lightvortex/havoc/out/target/product/chiron/Havoc*.zip /home/lightvortex/havoc/Havoc*.zip
+    mv /home/lightvortex/havoc/out/target/product/chiron/Havoc*.zip /run/media/lightvortex/Barracuda/
     echo //cleaning build//
     make clean
     echo //building chiron gapps version//
@@ -129,14 +129,14 @@ else
     brunch chiron
     echo //build complete//
     echo //copying//
-    mv /home/lightvortex/havoc/out/target/product/chiron/Havoc*.zip /home/lightvortex/havoc/Havoc*.zip
+    mv /home/lightvortex/havoc/out/target/product/chiron/Havoc*.zip /run/media/lightvortex/Barracuda/
     make clean
     echo //building nx531j//
     echo //building nx531j nongapps//
     export WITH_GAPPS=false && make clean
     brunch nx531j
     echo //build complete copying Non-gapps version//
-    mv /home/lightvortex/havoc/out/target/product/nx531j/Havoc*.zip /home/lightvortex/havoc/Havoc*.zip
+    mv /home/lightvortex/havoc/out/target/product/nx531j/Havoc*.zip /run/media/lightvortex/Barracuda/
     echo //cleaning build//
     make clean
     echo //building nx531j gapps version//
@@ -144,10 +144,10 @@ else
     brunch nx531j
     echo //build complete//
     echo //copying//
-    mv /home/lightvortex/havoc/out/target/product/nx531j/Havoc*.zip /home/lightvortex/havoc/Havoc*.zip
+    mv /home/lightvortex/havoc/out/target/product/nx531j/Havoc*.zip /run/media/lightvortex/Barracuda/
 fi
 end=`date +%s`
 runtime=$((end-start))
 echo "Time Taken $runtime"
-break;
+
 
