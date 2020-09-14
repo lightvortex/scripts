@@ -44,7 +44,7 @@ while true; do
         [Yy]* )
         echo -e "enter size in GB"
         read -r size
-        echo 'export _JAVA_OPTIONS=-Xmx${size}G ' >> .bashrc; 
+        echo 'export _JAVA_OPTIONS=-Xmx'${size}'G' >> .bashrc; 
         break;;
         [Nn]* ) echo "ok"; break;;
         * ) echo "Please answer yes or no.";;
@@ -57,8 +57,9 @@ while true; do
         echo -e "enter size in GB"
         read -r swap
         sudo fallocate -l ${swap}G /swapfile
-        sudo mkswap /swapfile
+        sudo dd if=/dev/zero of=/swapfile bs=${swap}G count=1048576
         sudo chmod 600 /swapfile
+        sudo mkswap /swapfile
         sudo swapon /swapfile
         sudo bash -c "echo /swapfile none swap defaults 0 0 >> /etc/fstab"
         break;;
