@@ -32,7 +32,11 @@ then
 else
     echo //Setting up Ubuntu//
     sudo apt-get update
-    sudo apt-get install git repo 
+    sudo apt-get install git
+    mkdir ~/bin
+    PATH=~/bin:$PATH
+    curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+    chmod a+x ~/bin/repo
     git clone https://github.com/akhilnarang/scripts scripts
     cd scripts
     . setup/android*.sh
