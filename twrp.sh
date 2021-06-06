@@ -7,3 +7,7 @@ source venv/bin/activate
 . build/env*
 export ALLOW_MISSING_DEPENDENCIES=true
 export LC_ALL="C"
+
+. build/envsetup.sh
+lunch omni_chiron-eng
+mka recoveryimage
