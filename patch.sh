@@ -54,7 +54,7 @@ mk_zip() {
     $IMG2SDAT $vout -o flashable -v 4 -p vendor > /dev/null
     $IMG2SDAT $sout -o flashable -v 4 -p system > /dev/null
     cd flashable
-
+    rm -rf system.new.dat.br vendor.new.dat.br
     echo "Compressing system.new.dat"
     brotli -7 system.new.dat
     echo "Conpressing vendor.new.dat"
