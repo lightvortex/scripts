@@ -28,8 +28,8 @@ bytesToHuman() {
 
 # mk img
 mk_img() {
-ssize=4470647193
-vsize=872415232
+ssize=`du -sk $systemdir | awk '{$1*=1024;$1=int($1*1.05);printf $1}'`
+vsize=`du -sk $vendordir | awk '{$1*=1024;$1=int($1*1.05);printf $1}'`
 pvsize=`du -sk ${VENDORDIR} | awk '{$1*=1024;printf $1}'`
 pssize=`du -sk ${SYSTEMDIR} | awk '{$1*=1024;printf $1}'`
 sout=${OUTDIR}/system.img
@@ -41,17 +41,11 @@ sfcontexts=${LOCALDIR}/config/system_file_contexts
 
 echo "Creating system.img"
 echo "system.img size: $(bytesToHuman $pssize)"
-$MKUSERIMG -s "${SYSTEMDIR}" "$sout" ext4 system $ssize -C $sfsconfig $sfcontexts -T 0  -L system > /dev/null || exit 1
-
+. mkimage.sh "${SYSTEMDIR}" AB "$ssize" "$OUTDIR/system.img"
 echo "Creating vendor.img"
 echo "vendor.img size: $(bytesToHuman $pvsize)"
-$MKUSERIMG -s "${VENDORDIR}" "$vout" ext4 vendor $vsize -C $vfsconfig $vfcontexts -T 0  -L vendor > /dev/null || exit 1
-
-rm -rf ${LOCALDIR}/config
-rm -rf ${SYSTEMDIR}
-rm -rf ${VENDORDIR}
+. mkimage.sh "${VENDORDIR}" AB "$vsize" "$OUTDIR/vendor.img"
 }
-
 
 mk_zip() {
     echo "Creating ${NEWZIP}"
@@ -65,9 +59,6 @@ mk_zip() {
     brotli -7 system.new.dat
     echo "Conpressing vendor.new.dat"
     brotli -7 vendor.new.dat
-
-    rm system.new.dat || exit 1
-    rm vendor.new.dat || exit 1
 
     zip -rv9 ../${NEWZIP} boot.img system.new.dat.br system.patch.dat system.transfer.list vendor.new.dat.br vendor.patch.dat vendor.transfer.list
     cd ..
