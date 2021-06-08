@@ -72,3 +72,6 @@ mk_zip() {
     zip -rv9 ../${NEWZIP} boot.img system.new.dat.br system.patch.dat system.transfer.list vendor.new.dat.br vendor.patch.dat vendor.transfer.list
     cd ..
 }
+
+mk_img || continue
+mk_zip
