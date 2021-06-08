@@ -11,10 +11,10 @@ export OUTDIR=${LOCALDIR}/out
 export INDIR=${LOCALDIR}/in
 
 # Patch build.prop
-sed -i "s/ro.product.system.device=star/ro.product.system.device=chiron/g" ${SYSTEMDIR}/system/build.prop
-sed -i "s/ro.product.system.model=Star/ro.product.system.model=Mix 2/g" ${SYSTEMDIR}/system/build.prop
-sed -i "s/ro.product.system.name=star/ro.product.system.name=chiron/g" ${SYSTEMDIR}/system/build.prop
-sed -i "s/ro.product.system.marketname=chiron/ro.product.system.marketname=chiron/g" ${SYSTEMDIR}/system/build.prop
+sed -i "s/ro.product.system.device=star/ro.product.system.device=chiron/g" ${SYSTEMDIR}/build.prop
+sed -i "s/ro.product.system.model=Star/ro.product.system.model=Mix 2/g" ${SYSTEMDIR}/build.prop
+sed -i "s/ro.product.system.name=star/ro.product.system.name=chiron/g" ${SYSTEMDIR}/build.prop
+sed -i "s/ro.product.system.marketname=chiron/ro.product.system.marketname=chiron/g" ${SYSTEMDIR}/build.prop
 
 bytesToHuman() {
     b=${1:-0}; d=''; s=0; S=(Bytes {K,M,G,T,P,E,Z,Y}iB)
